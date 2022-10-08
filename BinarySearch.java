@@ -26,3 +26,7 @@ public class Array_binary {
 		return -1;
 	}
 }
+
+// Output
+// [10, 20, 30, 40, 50, 60, 70, 72, 76, 80]
+// 9
