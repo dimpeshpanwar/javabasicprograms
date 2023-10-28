@@ -1,0 +1,22 @@
+import java.util.*;
+
+public class Main
+{
+    static int fact(int n) {
+        if (n == 1)
+            return 1;
+        else
+            return n*fact(n-1);
+    }
+    
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    
+	    System.out.println("Enter the value of n: ");
+	    int n = sc.nextInt();
+	    
+	    int x = fact(n);
+	    
+	    System.out.printf("Factorial of %d is: %d",n,x);
+	}
+}
