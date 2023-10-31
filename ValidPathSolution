@@ -1,0 +1,52 @@
+/**
+There is a bi-directional graph with n vertices, where each vertex is labeled from 0 to n - 1 (inclusive). The edges in the graph are represented as a 2D integer array edges, where each edges[i] = [ui, vi] denotes a bi-directional edge between vertex ui and vertex vi. Every vertex pair is connected by at most one edge, and no vertex has an edge to itself.
+
+You want to determine if there is a valid path that exists from vertex source to vertex destination.
+
+Given edges and the integers n, source, and destination, return true if there is a valid path from source to destination, or false otherwise.
+*/
+
+class ValidPathSolution {
+    public boolean validPath(int n, int[][] edges, int source, int destination) {
+        Map<Integer,List<Integer>> g = buildGraphMap(edges);    
+        Queue<Integer> q = new LinkedList<>();
+        q.offer(source);
+        Set<Integer> visited = new HashSet<>();
+        while(!q.isEmpty()) {
+            int vertex = q.poll();
+            if(!visited.contains(vertex)){
+                if (vertex == destination)
+                    return true;
+                visited.add(vertex);
+                for (int neighbour: g.get(vertex)){
+                        q.offer(neighbour);
+                }
+
+            }
+
+            
+
+        }
+        return false;      
+    }
+
+    private Map<Integer,List<Integer>> buildGraphMap(int[][] edges) {
+        Map<Integer,List<Integer>> graph = new HashMap<>();
+        for (int[] edge: edges){
+            Integer f = edge[0];
+            Integer t = edge[1];
+
+            if(!graph.containsKey(f)){
+                graph.put(f, new ArrayList<>());
+            }
+            graph.get(f).add(t);
+
+            if(!graph.containsKey(t)){
+                graph.put(t, new ArrayList<>());
+            }
+            graph.get(t).add(f);
+            
+        }
+        return graph;
+    }
+}
